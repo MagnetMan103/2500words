@@ -23,8 +23,44 @@ body {
     text-align: left;
     background-color: #4CAF50;
     color: white;
+    align-items: center;
 }
 
 #table tr:hover {
     background-color: #ddd;
+}
+
+#table tr{
+
+}
+
+#addWord {
+    background-color: greenyellow;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+}
+
+button:hover{
+    opacity: 70%;
+}
+
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#table button {
+    background-color: #fd5c63;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+}
+
+h1 {
+    font-size: 15px;
+    color: #353935;
 }
