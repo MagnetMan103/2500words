@@ -1,11 +1,62 @@
-let words = '';
-const wordDiv = document.getElementById('words');
-const table = document.getElementById('table');
-const addWord = document.getElementById('addWord')
-let addWordActive = false;
+// let words = '';
+// const wordDiv = document.getElementById('words');
+// const table = document.getElementById('table');
+// const addWord = document.getElementById('addWord')
+// let addWordActive = false;
+
+if (!window.words) {
+    window.words = '';
+}
+if (!window.wordDiv) {
+    window.wordDiv = document.getElementById('words');
+}
+if (!window.table) {
+    window.table = document.getElementById('table');
+}
+if (!window.addWord) {
+    window.addWord = document.getElementById('addWord');
+}
+if (typeof window.addWordActive === 'undefined') {
+    window.addWordActive = false;
+}
 
 createList().catch(console.error);
 
+document.getElementById('backHome').addEventListener('click', function() {
+    console.log('trying to go back home')
+    fetch('home.html')
+        .then(response => response.text())
+        .then(html => {
+            document.body.innerHTML = html;
+        })
+        .then(() => {
+            const oldScriptTag = document.querySelector('script');
+            document.body.removeChild(oldScriptTag);
+            const script = document.createElement('script');
+            script.src = 'home.js';
+            document.body.appendChild(script);
+        })
+        .catch(error => console.error('Error loading new page:', error));
+});
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.getElementById('backHome').addEventListener('click', function() {
+//         console.log('trying')
+//         fetch('home.html')
+//             .then(response => response.text())
+//             .then(html => {
+//                 document.body.innerHTML = html;
+//             })
+//             .then(() => {
+//                 const oldScriptTag = document.querySelector('script');
+//                 document.body.removeChild(oldScriptTag);
+//
+//                 const script = document.createElement('script');
+//                 script.src = 'home.js';
+//                 document.body.appendChild(script);
+//             })
+//             .catch(error => console.error('Error loading new page:', error));
+//     });
+// });
 addWord.addEventListener('click', () => {
     // create a modal to input a new word
     addWord.textContent = addWordActive ? '+' : 'X'

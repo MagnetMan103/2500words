@@ -53,7 +53,7 @@ async function displayDefinition(word, coords) {
     })
 
 
-    await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=' + word)
+    await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=en&dt=t&q=' + word)
         .then(response => response.json())
         .then(data => {
             definition = data[0][0][0];

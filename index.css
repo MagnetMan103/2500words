@@ -41,6 +41,13 @@ body {
     height: 25px;
 }
 
+#backHome {
+    background-color: greenyellow;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+}
+
 button:hover{
     opacity: 70%;
 }
