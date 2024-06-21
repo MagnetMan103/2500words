@@ -6,6 +6,9 @@ chrome.runtime.onInstalled.addListener(async () => {
         contexts: ['selection'],
         id: 'test',
     });
+    // if (!chrome.storage.sync.get('words')) {
+    //     chrome.storage.sync.set({ words: [] })
+    // }
 
 });
 

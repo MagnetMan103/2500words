@@ -33,3 +33,9 @@ document.getElementById('settings').addEventListener('click', function() {
         })
         .catch(error => console.error('Error loading new page:', error));
 });
+
+// document.getElementById('settings').addEventListener('click', function() {
+//     console.log('trying')
+//     window.location.href="settings.html";
+//
+// })
