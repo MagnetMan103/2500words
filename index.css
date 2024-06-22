@@ -21,6 +21,7 @@ body {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
+    font-size: 20px;
     background-color: #4CAF50;
     color: white;
     align-items: center;
@@ -30,9 +31,10 @@ body {
     background-color: #ddd;
 }
 
-#table tr{
-
+#table tr {
+    font-size: 15px;
 }
+
 
 #addWord {
     background-color: greenyellow;

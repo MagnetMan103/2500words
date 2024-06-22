@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(async () => {
         title: 'Add "%s" to 2500words',
         type: 'normal',
         contexts: ['selection'],
-        id: 'test',
+        id: '2500words',
     });
     // if (!chrome.storage.sync.get('words')) {
     //     chrome.storage.sync.set({ words: [] })

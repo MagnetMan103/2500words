@@ -53,19 +53,7 @@ async function displayDefinition(word, coords) {
     })
 
 
-    await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=fr&tl=en&dt=t&q=' + word)
-        .then(response => response.json())
-        .then(data => {
-            definition = data[0][0][0];
-        })
-        .then(() => {
-            chrome.storage.sync.set({[word]: definition})
-            console.log('finished')
-        })
-        .catch(error => {
-            console.error(error)
-        })
-    console.log('starting')
+    definition = await getDefinition(word);
     const wordElement = document.createElement('span');
     wordElement.style.all = 'initial';
     wordElement.style.fontWeight = 'bold'; // Make the word bold
@@ -116,4 +104,26 @@ async function displayDefinition(word, coords) {
     div.appendChild(close);
     document.body.appendChild(div);
 
+}
+
+
+async function getDefinition(word) {
+    const foreign_language = (await chrome.storage.sync.get('foreign_language')).foreign_language;
+    const native_language = (await chrome.storage.sync.get('native_language')).native_language;
+    const languageCodes = {
+        'English': 'en', 'Spanish': 'es', 'French': 'fr', 'German': 'de', 'Chinese': 'zh-CN', 'Japanese': 'ja',
+        'Korean': 'ko', 'Russian': 'ru', 'Italian': 'it', 'Portuguese': 'pt', 'Arabic': 'ar', 'Hindi': 'hi'
+    }
+    let foreignLanguageCode = languageCodes[foreign_language];
+    let nativeLanguageCode = languageCodes[native_language];
+    if (!foreignLanguageCode || !nativeLanguageCode) {
+        foreignLanguageCode = 'auto';
+        nativeLanguageCode = 'en';
+        console.log('using default values')
+    }
+    console.log(foreignLanguageCode, nativeLanguageCode)
+    const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${foreignLanguageCode}&tl=${nativeLanguageCode}&dt=t&q=${word}`);
+    const data = await response.json();
+    await chrome.storage.sync.set({[word]: data[0][0][0]});
+    return data[0][0][0];
 }

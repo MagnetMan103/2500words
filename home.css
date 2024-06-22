@@ -1,0 +1,40 @@
+
+#main button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px;
+    margin: 8px 0;
+    border: none;
+    width: 50%;
+    font-size: 20px;
+}
+
+button {
+    cursor: pointer;
+    user-select: none;
+}
+button:hover {
+    opacity: 0.7;
+}
+
+#main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#titleMain {
+    font-size: 15px;
+    color: #353935;
+}
+
+#headerMain {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    width: 250px;
+}
