@@ -26,6 +26,23 @@ window.languages = [
     'Korean', 'Russian', 'Italian', 'Portuguese', 'Arabic', 'Hindi'
 ]
 
+initialize()
+async function initialize() {
+    const foreignLanguageResult = await chrome.storage.sync.get('foreign_language');
+    const nativeLanguageResult = await chrome.storage.sync.get('native_language');
+    if (foreignLanguageResult.foreign_language === undefined || nativeLanguageResult.native_language === undefined) {
+        console.log('activated')
+        return;
+    }
+    languageInput.value = foreignLanguageResult.foreign_language;
+    languageInput2.value = nativeLanguageResult.native_language;
+}
+
+// if (chrome.storage.sync.get('foreign_language') !== undefined) {
+//     console.log(chrome.storage.sync.get('foreign_language'))
+//     languageInput.value = await chrome.storage.sync.get('foreign_language');
+// }
+
 // const languagePicker = document.getElementById('language-picker');
 // const languageInput = document.getElementById('language-input');
 // const languageList = document.getElementById('language-list');
@@ -54,6 +71,7 @@ languageInput.addEventListener('input', () => {
                     languageInput.value = language;
                     languageList.style.display = 'none';
                     // set chrome storage language here
+                    chrome.storage.sync.set({'foreign_language': language})
                 });
                 languageList.appendChild(li);
             });
@@ -82,6 +100,7 @@ languageInput2.addEventListener('input', () => {
                 li.addEventListener('click', () => {
                     languageInput2.value = language;
                     languageList2.style.display = 'none';
+                    chrome.storage.sync.set({'native_language': language})
                 });
                 languageList2.appendChild(li);
             });

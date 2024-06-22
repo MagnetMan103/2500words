@@ -1,8 +1,4 @@
-// let words = '';
-// const wordDiv = document.getElementById('words');
-// const table = document.getElementById('table');
-// const addWord = document.getElementById('addWord')
-// let addWordActive = false;
+import {getDefinition} from "./storage.mjs";
 
 if (!window.words) {
     window.words = '';
@@ -126,6 +122,9 @@ async function createList () {
     await chrome.storage.sync.get(null, function(items) {
             // use map to create rows with a word cell and translation cell
             for (const [key, value] of Object.entries(items)) {
+                if (key === 'foreign_language' || key === 'native_language') {
+                    continue
+                }
                 const tr = document.createElement('tr');
                 const td = document.createElement('td');
                 td.innerText = key;
