@@ -18,7 +18,7 @@ if (typeof window.addWordActive === 'undefined') {
 createList().catch(console.error);
 
 document.getElementById('backHome').addEventListener('click', function() {
-    console.log('trying to go back home')
+    // console.log('trying to go back home')
     fetch('home.html')
         .then(response => response.text())
         .then(html => {
@@ -74,7 +74,7 @@ addWord.addEventListener('click', () => {
     modal.style.alignItems = 'center';
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Enter a word';
+    input.placeholder = 'Add a word';
     const submit = document.createElement('button');
     submit.innerText = 'Submit';
     submit.style.backgroundColor = 'greenyellow';
@@ -94,7 +94,7 @@ addWord.addEventListener('click', () => {
         }
         getDefinition(input.value).then(data => {
             const definition = data;
-            console.log('definition', definition)
+            // console.log('definition', definition)
             const tr = document.createElement('tr');
             const td = document.createElement('td');
             td.innerText = input.value;
@@ -124,7 +124,7 @@ addWord.addEventListener('click', () => {
 async function createList () {
     await chrome.storage.sync.get(null, function(items) {
             for (const [key, value] of Object.entries(items)) {
-                if (key === 'foreign_language' || key === 'native_language') {
+                if (key === 'foreign_language' || key === 'native_language' || key === 'rotation_preference') {
                     continue
                 }
                 const tr = document.createElement('tr');
@@ -165,9 +165,9 @@ async function getDefinition(word) {
     if (!foreignLanguageCode || !nativeLanguageCode) {
         foreignLanguageCode = 'auto';
         nativeLanguageCode = 'en';
-        console.log('using default values')
+        // console.log('using default values')
     }
-    console.log(foreignLanguageCode, nativeLanguageCode)
+    // console.log(foreignLanguageCode, nativeLanguageCode)
     const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${foreignLanguageCode}&tl=${nativeLanguageCode}&dt=t&q=${word}`);
     const data = await response.json();
     await chrome.storage.sync.set({[word]: data[0][0][0]});

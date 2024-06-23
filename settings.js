@@ -1,5 +1,5 @@
 document.getElementById('backHome').addEventListener('click', function() {
-    console.log('trying to go back home')
+    // console.log('trying to go back home')
     fetch('home.html')
         .then(response => response.text())
         .then(html => {
@@ -31,7 +31,7 @@ async function initialize() {
     const foreignLanguageResult = await chrome.storage.sync.get('foreign_language');
     const nativeLanguageResult = await chrome.storage.sync.get('native_language');
     if (foreignLanguageResult.foreign_language === undefined || nativeLanguageResult.native_language === undefined) {
-        console.log('activated')
+        // console.log('activated')
         return;
     }
     languageInput.value = foreignLanguageResult.foreign_language;

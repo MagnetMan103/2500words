@@ -1,17 +1,17 @@
 
 let coords = {x: 0, y: 0};
 document.addEventListener('contextmenu', (e) => {
-    console.log('right clicked', e.clientX, e.clientY)
+    // console.log('right clicked', e.clientX, e.clientY)
     coords = {x: e.x, y: e.y};
     chrome.runtime.sendMessage({coords: {x: e.clientX, y: e.clientY}}, (response) => {
-        console.log('Message sent to background script:', response);
+        // console.log('Message sent to background script:', response);
     });
 })
 
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.action === 'executeScript') {
-        console.log('Message received from background script:', message);
+        // console.log('Message received from background script:', message);
         // Execute the desired script or actions
         displayDefinition(message.word, coords);
 
@@ -77,6 +77,8 @@ async function displayDefinition(word, coords) {
     text.style.padding = '5px';
     text.style.userSelect = 'none';
     text.style.cursor = 'move';
+    text.style.maxWidth = '300px'
+    text.style.overflowWrap = 'break-word';
     text.appendChild(wordElement);
     text.appendChild(definitionElement);
 
@@ -119,9 +121,9 @@ async function getDefinition(word) {
     if (!foreignLanguageCode || !nativeLanguageCode) {
         foreignLanguageCode = 'auto';
         nativeLanguageCode = 'en';
-        console.log('using default values')
+        // console.log('using default values')
     }
-    console.log(foreignLanguageCode, nativeLanguageCode)
+    // console.log(foreignLanguageCode, nativeLanguageCode)
     const response = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=${foreignLanguageCode}&tl=${nativeLanguageCode}&dt=t&q=${word}`);
     const data = await response.json();
     await chrome.storage.sync.set({[word]: data[0][0][0]});

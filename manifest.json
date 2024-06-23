@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "2500words",
-  "description": "Base Level Extension",
+  "description": "A fun way to learn languages",
   "version": "1.0",
   "icons": {
     "16": "./assets/icons8-pixel-star-16.png",

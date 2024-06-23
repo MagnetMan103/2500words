@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     if (message.coords) {
-        console.log('Coordinates received from content script:', message.coords);
+        // console.log('Coordinates received from content script:', message.coords);
         // Handle the coordinates as needed
     }
     // Optionally send a response back to the content script
@@ -22,12 +22,12 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 chrome.contextMenus.onClicked.addListener((item, tab) => {
-    console.log('attempting to use contextmenu')
+    // console.log('attempting to use contextmenu')
     try {
-        console.log('attempting to add word to 2500words:', item.selectionText)
+        // console.log('attempting to add word to 2500words:', item.selectionText)
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
             chrome.tabs.sendMessage(tabs[0].id, { action: 'executeScript', word: item.selectionText }, (response) => {
-                console.log('Response from content script:', response);
+                // console.log('Response from content script:', response);
             });
         });
     }
