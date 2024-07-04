@@ -1,8 +1,6 @@
 document.getElementById('backHome').addEventListener('click', function() {
     // console.log('trying to go back home')
     document.removeEventListener('keydown', handleKeyDown);
-    document.removeEventListener('keydown', handleArrowRight);
-    document.removeEventListener('keydown', handleArrowLeft);
 
     fetch('home.html')
         .then(response => response.text())
@@ -39,27 +37,52 @@ prev.style.opacity = 0.3;
 prev.style.cursor = 'default';
 next.style.cursor = 'pointer'
 // console.log(items)
-randomizeItems().then(data => {
-    if (data.length === 0) {
-        next.style.opacity = 0.3;
-        next.style.cursor = 'default';
-        return;
+initialize();
+async function initialize() {
+    randomizeItems().then(data => {
+        if (data.length === 0) {
+            next.style.opacity = 0.3;
+            next.style.cursor = 'default';
+            return;
+        }
+        items = data;
+        front.textContent = items[0][0];
+        back.textContent = items[0][1];
+        statusBar.textContent = `${count}/${items.length}`;
+        if (items.length === 1) {
+            next.style.opacity = 0.3;
+            next.style.cursor = 'default';
+        }
+        // console.log(items)
+        // console.log(items[2])
+    })
+}
+
+async function restart() {
+    if (items.length <= 1) {
+        return; // nothing to do if there is only one or zero item
     }
-    items = data;
+    if (flipped) {
+        front.style.transform = front.style.transform==="rotateY(180deg)" ? "rotateY(0deg)" : "rotateY(180deg)";
+        back.style.transform = front.style.transform==="rotateY(180deg)" ? "rotateY(0deg)" : "rotateY(180deg)";
+        flipped = !flipped
+    }
+    for (let i = items.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [items[i], items[j]] = [items[j], items[i]];
+    }
+    count = 1
     front.textContent = items[0][0];
     back.textContent = items[0][1];
     statusBar.textContent = `${count}/${items.length}`;
-    if (items.length === 1) {
-        next.style.opacity = 0.3;
-        next.style.cursor = 'default';
-    }
-    // console.log(items)
-    // console.log(items[2])
-})
+    prev.style.opacity = 0.3;
+    prev.style.cursor = 'default';
+    next.style.cursor = 'pointer'
+    next.style.opacity = 1;
+
+}
 
 document.addEventListener('keydown', handleKeyDown);
-document.addEventListener('keydown', handleArrowRight);
-document.addEventListener('keydown', handleArrowLeft);
 
 next.addEventListener('click', function() {
     // console.log(count)
@@ -160,20 +183,18 @@ function handleKeyDown(event) {
         flashcard.classList.toggle('flipped');
         flipped = !flipped;
     }
-}
-
-function handleArrowRight(event) {
     if (event.code === 'ArrowRight') {
         if (count < items.length) {
             goRight()
         }
     }
-}
-
-function handleArrowLeft(event) {
     if (event.code === 'ArrowLeft') {
         if (count > 1) {
             goLeft()
         }
     }
+    if (event.code === 'KeyR') {
+        restart()
+    }
 }
+
