@@ -34,8 +34,22 @@
     user-select: none;
 }
 
-#footer div:hover{
+/*#footer div:hover{*/
+/*    opacity: 0.7;*/
+/*}*/
+
+.enabledFooterBtn {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.enabledFooterBtn:hover {
     opacity: 0.7;
+}
+
+.disabledFooterBtn {
+    opacity: 0.3;
+    cursor: default;
 }
 
 /* gpt magic */

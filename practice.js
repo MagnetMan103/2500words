@@ -33,9 +33,8 @@ document.getElementById('flashcard-container').addEventListener('click', functio
 });
 window.items = [];
 window.count = 1;
-prev.style.opacity = 0.3;
-prev.style.cursor = 'default';
-next.style.cursor = 'pointer'
+prev.classList.add('disabledFooterBtn');
+next.classList.add('enabledFooterBtn');
 // console.log(items)
 initialize();
 async function initialize() {
@@ -75,8 +74,8 @@ async function restart() {
     front.textContent = items[0][0];
     back.textContent = items[0][1];
     statusBar.textContent = `${count}/${items.length}`;
-    prev.style.opacity = 0.3;
-    prev.style.cursor = 'default';
+    prev.classList.add('disabledFooterBtn');
+    prev.classList.remove('enabledFooterBtn');
     if (next.textContent === '🔄') {
         next.textContent = '➡️';
         next.removeEventListener('click', restart);
@@ -151,9 +150,9 @@ function goRight() {
         next.textContent = '🔄';
         next.addEventListener('click', restart)
     }
-    if (prev.style.opacity === '0.3') {
-        prev.style.opacity = 1;
-        prev.style.cursor = 'pointer'
+    if (prev.classList.contains('disabledFooterBtn')) {
+        prev.classList.remove('disabledFooterBtn');
+        prev.classList.add('enabledFooterBtn');
 
     }
 }
@@ -173,8 +172,8 @@ function goLeft() {
         }
     }, 100);
     if (count === 1) {
-        prev.style.opacity = 0.3;
-        prev.style.cursor = 'default';
+        prev.classList.add('disabledFooterBtn');
+        prev.classList.remove('enabledFooterBtn');
     }
     if (next.textContent === '🔄') {
         next.textContent = '➡️';
