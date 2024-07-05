@@ -77,8 +77,10 @@ async function restart() {
     statusBar.textContent = `${count}/${items.length}`;
     prev.style.opacity = 0.3;
     prev.style.cursor = 'default';
-    next.style.cursor = 'pointer'
-    next.style.opacity = 1;
+    if (next.textContent === '🔄') {
+        next.textContent = '➡️';
+        next.removeEventListener('click', restart);
+    }
 
 }
 
@@ -144,8 +146,10 @@ function goRight() {
         }
     }, 100);
     if (count === items.length) {
-        next.style.opacity = 0.3;
-        next.style.cursor = 'default';
+        // next.style.opacity = 0.3;
+        // next.style.cursor = 'default';
+        next.textContent = '🔄';
+        next.addEventListener('click', restart)
     }
     if (prev.style.opacity === '0.3') {
         prev.style.opacity = 1;
@@ -172,9 +176,9 @@ function goLeft() {
         prev.style.opacity = 0.3;
         prev.style.cursor = 'default';
     }
-    if (next.style.opacity === '0.3') {
-        next.style.opacity = 1;
-        next.style.cursor = 'pointer';
+    if (next.textContent === '🔄') {
+        next.textContent = '➡️';
+        next.removeEventListener('click', restart);
     }
 }
 
