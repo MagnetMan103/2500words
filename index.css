@@ -62,11 +62,16 @@ button:hover{
 }
 
 #table button {
-    background-color: #fd5c63;
+    background-color: #71797E;
+    color: #E5E4E2;
     font-weight: bold;
     width: 25px;
     height: 25px;
     display: inline-block;
+    border-top: none;
+    border-left: none;
+    border-color: #808080;
+    border-width: 2px;
 }
 
 h1 {
