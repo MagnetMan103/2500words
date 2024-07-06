@@ -85,6 +85,8 @@ addWord.addEventListener('click', () => {
     document.body.insertBefore(modal, table);
 
     submit.addEventListener('click', async () => {
+        if (!addWordActive) {return}
+        addWordActive = false
         if (input.value === '') {
             document.body.removeChild(modal);
             addWordActive = false
@@ -108,15 +110,16 @@ addWord.addEventListener('click', () => {
             removeButton.addEventListener('click', () => {
                 chrome.storage.sync.remove(input.value, function () {
                     table.removeChild(tr);
+                    document.getElementById("wordHeader").textContent = `${table.rows.length - 1} Words`
                 });
             });
             rtd.appendChild(removeButton);
             tr.appendChild(rtd);
             table.appendChild(tr);
             document.body.removeChild(modal);
-            addWordActive = false
             addWord.textContent = '+'
             addWord.style.backgroundColor = 'greenyellow'
+            document.getElementById("wordHeader").textContent = `${table.rows.length - 1} Words`
         })
     });
 })
@@ -143,11 +146,13 @@ async function createList () {
                 removeButton.addEventListener('click', () => {
                     chrome.storage.sync.remove(key, function() {
                         table.removeChild(tr);
+                        document.getElementById("wordHeader").textContent = `${table.rows.length - 1} Words`
                     });
                 });
                 rtd.appendChild(removeButton);
                 tr.appendChild(rtd);
             }
+            document.getElementById("wordHeader").textContent = `${table.rows.length - 1} Words`
         })
 
 
@@ -173,3 +178,4 @@ async function getDefinition(word) {
     await chrome.storage.sync.set({[word]: data[0][0][0]});
     return data[0][0][0];
 }
+
