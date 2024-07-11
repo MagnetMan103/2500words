@@ -19,7 +19,11 @@ Pending review for Chrome Web Store!
 ![Screenshot 2024-07-08 at 11 33 43 AM](https://github.com/MagnetMan103/2500words/assets/137188079/676b54cc-b4d7-4844-a088-eca8c0d11095)
 ### Word List
 ![Screenshot 2024-07-08 at 11 33 57 AM](https://github.com/MagnetMan103/2500words/assets/137188079/bb64b61b-8e07-44dd-b266-2a8e5ee9838c)
+### Practice
+<img width="358" alt="Screenshot 2024-07-11 at 2 51 26 PM" src="https://github.com/MagnetMan103/2500words/assets/137188079/ebf5844c-fdc5-42d5-99a4-1858750e3f0d">
+
 ### Translation
 ![Screenshot 2024-07-08 at 11 38 19 AM](https://github.com/MagnetMan103/2500words/assets/137188079/445700db-d71b-443b-818b-3c9f2426db44)
 ### Settings
 ![Screenshot 2024-07-08 at 11 34 04 AM](https://github.com/MagnetMan103/2500words/assets/137188079/0b9de628-da95-44be-867d-962bdf13d9d0)
+
