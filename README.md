@@ -12,7 +12,7 @@ The following languages are supported: English, Spanish, French, German, Chinese
 The translations are made with Google Translate's API and your words are stored locally.
 
 ## Usage
-Pending review for Chrome Web Store!
+Download for Chrome: https://chromewebstore.google.com/detail/oofdlpnfhhbepaebanohecbocjmbkfmd?hl=en&authuser=0
 
 ## Examples
 ### Home Screen
