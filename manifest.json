@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "2500words",
   "description": "Translate words from articles and save them to your word list for review.",
-  "version": "1.0",
+  "version": "2.0",
   "icons": {
     "16": "./assets/icons8-pixel-star-16.png",
     "32": "./assets/icons8-pixel-star-32.png",

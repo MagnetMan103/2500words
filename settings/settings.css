@@ -3,13 +3,13 @@ body {
     background-color: #ffffff;
 }
 
-.language-picker, .language-picker2 {
+.picker {
     position: relative;
     width: 230px;
     margin: 0 10px;
 }
 
-#language-input, #language-input2 {
+.input {
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
@@ -17,7 +17,7 @@ body {
     border-radius: 4px;
 }
 
-#language-list, #language-list2 {
+.list {
     position: absolute;
     top: 100%;
     width: 100%;
@@ -33,13 +33,21 @@ body {
     margin: 0;
 }
 
-#language-list li, #language-list2 li {
+.list li {
     padding: 10px;
     cursor: pointer;
 }
 
-#language-list li:hover, #language-list2 li:hover {
+.list li:hover {
     background-color: #eee;
+}
+
+.list li.selected:hover {
+    background-color: #ff7171;
+}
+
+.selected {
+    background-color: lightgreen;
 }
 
 ul {

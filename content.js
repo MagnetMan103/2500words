@@ -114,7 +114,8 @@ async function getDefinition(word) {
     const native_language = (await chrome.storage.sync.get('native_language')).native_language;
     const languageCodes = {
         'English': 'en', 'Spanish': 'es', 'French': 'fr', 'German': 'de', 'Chinese': 'zh-CN', 'Japanese': 'ja',
-        'Korean': 'ko', 'Russian': 'ru', 'Italian': 'it', 'Portuguese': 'pt', 'Arabic': 'ar', 'Hindi': 'hi'
+        'Korean': 'ko', 'Russian': 'ru', 'Italian': 'it', 'Portuguese': 'pt', 'Arabic': 'ar', 'Hindi': 'hi',
+        'Dutch': 'nl', 'Norwegian': 'no', 'Swedish': 'sv'
     }
     let foreignLanguageCode = languageCodes[foreign_language];
     let nativeLanguageCode = languageCodes[native_language];

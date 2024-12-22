@@ -121,7 +121,8 @@ async function randomizeItems() {
     let items = Object.entries(result);
     // filter out items with key values of native_language and foreign_language
     items = items.filter(item => {
-        return item[0] !== 'native_language' && item[0] !== 'foreign_language' && item[0] !== 'rotation_preference';
+        return item[0] !== 'native_language' && item[0] !== 'foreign_language' && item[0] !== 'rotation_preference'
+            && item[0] !== 'user_preferences';
     });
     for (let i = items.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));

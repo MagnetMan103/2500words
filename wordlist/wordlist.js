@@ -33,25 +33,7 @@ document.getElementById('backHome').addEventListener('click', function() {
         })
         .catch(error => console.error('Error loading new page:', error));
 });
-// document.addEventListener('DOMContentLoaded', function() {
-//     document.getElementById('backHome').addEventListener('click', function() {
-//         console.log('trying')
-//         fetch('home.html')
-//             .then(response => response.text())
-//             .then(html => {
-//                 document.body.innerHTML = html;
-//             })
-//             .then(() => {
-//                 const oldScriptTag = document.querySelector('script');
-//                 document.body.removeChild(oldScriptTag);
-//
-//                 const script = document.createElement('script');
-//                 script.src = 'home.js';
-//                 document.body.appendChild(script);
-//             })
-//             .catch(error => console.error('Error loading new page:', error));
-//     });
-// });
+
 addWord.addEventListener('click', () => {
     // create a modal to input a new word
     addWord.textContent = addWordActive ? '+' : 'X'
@@ -127,7 +109,8 @@ addWord.addEventListener('click', () => {
 async function createList () {
     await chrome.storage.sync.get(null, function(items) {
             for (const [key, value] of Object.entries(items)) {
-                if (key === 'foreign_language' || key === 'native_language' || key === 'rotation_preference') {
+                if (key === 'foreign_language' || key === 'native_language' || key === 'rotation_preference'
+                    || key === 'user_preferences') {
                     continue
                 }
                 const tr = document.createElement('tr');
@@ -163,7 +146,8 @@ async function getDefinition(word) {
     const native_language = (await chrome.storage.sync.get('native_language')).native_language;
     const languageCodes = {
         'English': 'en', 'Spanish': 'es', 'French': 'fr', 'German': 'de', 'Chinese': 'zh-CN', 'Japanese': 'ja',
-        'Korean': 'ko', 'Russian': 'ru', 'Italian': 'it', 'Portuguese': 'pt', 'Arabic': 'ar', 'Hindi': 'hi'
+        'Korean': 'ko', 'Russian': 'ru', 'Italian': 'it', 'Portuguese': 'pt', 'Arabic': 'ar', 'Hindi': 'hi',
+        'Dutch': 'nl', 'Norwegian': 'no', 'Swedish': 'sv'
     }
     let foreignLanguageCode = languageCodes[foreign_language];
     let nativeLanguageCode = languageCodes[native_language];
